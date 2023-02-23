@@ -1,0 +1,25 @@
+{
+  "name": "theme-and-components",
+  "version": "1.0.0",
+  "description": "Shared themes and components for frontends",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "concurrently \"tsup index.ts --format cjs --dts\" \"chakra-cli tokens ./theme/index.ts\"",
+    "dev": "concurrently \"tsup index.ts --format cjs --dts --watch\" \"chakra-cli tokens ./theme/index.ts --watch\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@chakra-ui/cli": "^2.3.0",
+    "concurrently": "^7.6.0",
+    "tsup": "6.6.2"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.5.1",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "framer-motion": "^9.1.2"
+  }
+}
