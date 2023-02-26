@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Button colorScheme={'facebook'}>hello</Button>
+        <Button variant={'solid'}>hello</Button>
         <CustomButton />
       </main>
     </>

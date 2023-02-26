@@ -2,12 +2,13 @@
   "name": "theme-and-components",
   "version": "1.0.0",
   "description": "Shared themes and components for frontends",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "concurrently \"tsup index.ts --format cjs --dts\" \"chakra-cli tokens ./theme/index.ts\"",
-    "dev": "concurrently \"tsup index.ts --format cjs --dts --watch\" \"chakra-cli tokens ./theme/index.ts --watch\""
+    "build": "concurrently \"tsup index.ts --format esm --dts\" \"chakra-cli tokens ./theme/index.ts\"",
+    "dev": "concurrently \"tsup index.ts --format esm --dts --watch\" \"chakra-cli tokens ./theme/index.ts --watch\""
   },
   "author": "",
   "license": "ISC",

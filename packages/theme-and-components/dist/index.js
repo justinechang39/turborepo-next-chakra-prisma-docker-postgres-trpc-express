@@ -1,4 +1,3 @@
-"use strict";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -7,10 +6,6 @@ var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
 };
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
@@ -28,7 +23,6 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // ../../node_modules/react/cjs/react.production.min.js
 var require_react_production_min = __commonJS({
@@ -329,7 +323,7 @@ var require_react_production_min = __commonJS({
 
 // ../../node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
-  "../../node_modules/react/cjs/react.development.js"(exports, module2) {
+  "../../node_modules/react/cjs/react.development.js"(exports, module) {
     "use strict";
     if (process.env.NODE_ENV !== "production") {
       (function() {
@@ -1985,8 +1979,8 @@ var require_react_development = __commonJS({
           if (enqueueTaskImpl === null) {
             try {
               var requireString = ("require" + Math.random()).slice(0, 7);
-              var nodeRequire = module2 && module2[requireString];
-              enqueueTaskImpl = nodeRequire.call(module2, "timers").setImmediate;
+              var nodeRequire = module && module[requireString];
+              enqueueTaskImpl = nodeRequire.call(module, "timers").setImmediate;
             } catch (_err) {
               enqueueTaskImpl = function(callback) {
                 {
@@ -2202,26 +2196,18 @@ var require_react_development = __commonJS({
 
 // ../../node_modules/react/index.js
 var require_react = __commonJS({
-  "../../node_modules/react/index.js"(exports, module2) {
+  "../../node_modules/react/index.js"(exports, module) {
     "use strict";
     if (process.env.NODE_ENV === "production") {
-      module2.exports = require_react_production_min();
+      module.exports = require_react_production_min();
     } else {
-      module2.exports = require_react_development();
+      module.exports = require_react_development();
     }
   }
 });
 
-// index.ts
-var theme_and_components_exports = {};
-__export(theme_and_components_exports, {
-  CustomButton: () => CustomButton,
-  theme: () => theme
-});
-module.exports = __toCommonJS(theme_and_components_exports);
-
 // theme/index.ts
-var import_react = require("@chakra-ui/react");
+import { extendTheme } from "@chakra-ui/react";
 
 // theme/styles.ts
 var styles = {
@@ -2233,7 +2219,46 @@ var colors = {};
 var colors_default = colors;
 
 // theme/components/button.ts
-var Button = {};
+var Button = {
+  // 1. We can update the base styles
+  baseStyle: {
+    fontWeight: "bold"
+    // Normally, it is "semibold"
+  },
+  // 2. We can add a new button size or extend existing
+  sizes: {
+    xl: {
+      h: "56px",
+      fontSize: "lg",
+      px: "32px"
+    }
+  },
+  // 3. We can add a new visual variant
+  variants: {
+    "with-shadow": {
+      bg: "red.400",
+      boxShadow: "0 0 2px 2px #efdfde"
+    },
+    // 4. We can override existing variants
+    solid: (props) => ({
+      bg: props.colorMode === "dark" ? "red.300" : "red.500"
+    }),
+    // 5. We can add responsive variants
+    sm: {
+      bg: "teal.500",
+      fontSize: "md"
+    }
+  },
+  // 6. We can overwrite defaultProps
+  defaultProps: {
+    size: "lg",
+    // default is md
+    variant: "sm",
+    // default is solid
+    colorScheme: "green"
+    // default is gray
+  }
+};
 var button_default = Button;
 
 // theme/index.ts
@@ -2246,19 +2271,18 @@ var overrides = {
     // Other components go here
   }
 };
-var theme = (0, import_react.extendTheme)(overrides);
+var theme = extendTheme(overrides);
 
 // components/CustomButton/CustomButton.tsx
-var import_react2 = __toESM(require_react());
-var import_react3 = require("@chakra-ui/react");
+var import_react2 = __toESM(require_react(), 1);
+import { Button as Button2 } from "@chakra-ui/react";
 function CustomButton() {
-  return /* @__PURE__ */ import_react2.default.createElement(import_react3.Button, { colorScheme: "linkedin" }, "CustomButton");
+  return /* @__PURE__ */ import_react2.default.createElement(Button2, { colorScheme: "linkedin" }, "CustomButton");
 }
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+export {
   CustomButton,
   theme
-});
+};
 /*! Bundled license information:
 
 react/cjs/react.production.min.js:
