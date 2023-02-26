@@ -2,8 +2,7 @@
   "name": "theme-and-components",
   "version": "1.0.0",
   "description": "Shared themes and components for frontends",
-  "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
