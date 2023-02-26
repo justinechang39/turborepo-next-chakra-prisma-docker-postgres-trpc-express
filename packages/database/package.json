@@ -4,7 +4,8 @@
   "types": "./index.ts",
   "scripts": {
     "db:generate": "prisma generate",
-    "db:push": "prisma db push --skip-generate"
+    "db:push": "prisma db push --skip-generate",
+    "db:init": "docker compose up -d"
   },
   "dependencies": {
     "@prisma/client": "^4.10.1"
